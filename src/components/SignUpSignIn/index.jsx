@@ -1,9 +1,9 @@
 import './styles.css'
 
-const index = () => {
+const SignUpSignInComponent = () => {
   return (
     <div>index</div>
   )
 }
 
-export default index;
+export default SignUpSignInComponent;
