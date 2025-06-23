@@ -5,8 +5,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 90vh;
+  /* width: 100vw; */
+  /* height: 90vh; */
+  margin: 5rem;
 }
 .signup-signin-container {
   width: 30vw;
@@ -49,7 +50,7 @@
   opacity: 1;
   transition: all 0.3s;
 }
-
+/* 
 .btn {
   color: var(--theme);
   text-align: center;
@@ -81,7 +82,7 @@
   background-color: #fff !important;
   color: var(--theme) !important;
   transition: all 0.3s;
-}
+} */
 
 .input-flex {
   display: flex;

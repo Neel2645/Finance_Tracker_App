@@ -1,28 +1,32 @@
 .navbar {
   position: sticky;
-  width: 100%;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 1.5rem;
   background-color: var(--theme);
   display: flex;
+  top: 0;
+  left: 0;
   justify-content: space-between;
+  z-index: 50;
   align-items: center;
 }
 
-.navbar-heading {
+.logo{
   color: #fff;
   font-weight: 500;
-  margin: 0px;
+  margin: 0;
   font-size: 1.2rem;
 }
-.navbar-link {
+.link {
   color: #e3e3e3;
   font-weight: 500;
   margin: 0px;
   font-size: 1rem;
   cursor: pointer;
+  opacity: 0.8;
 }
 
-.navbar-link:hover {
+.link:hover {
+  opacity: 1;
   color: #fff;
   transition: all 0.3s;
 }
