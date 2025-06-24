@@ -16,10 +16,11 @@
   margin: 0;
   font-size: 1.2rem;
 }
+
 .link {
   color: #e3e3e3;
   font-weight: 500;
-  margin: 0px;
+  margin: 0;
   font-size: 1rem;
   cursor: pointer;
   opacity: 0.8;

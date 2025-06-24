@@ -118,8 +118,24 @@ const SignUpSignInComponent = () => {
         setLoading(false);
       }
     } else {
-      toast.error("Account Already Exists...!");
+      // toast.error("Account Already Exists...!");
       setLoading(false);
+    }
+  }
+
+  async function googleAuth(){
+     setLoading(true);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      await createDoc(user);
+      toast.success("User Authenticated Successfully!");
+      setLoading(false);
+      navigate("/dashboard");
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.message);
+      console.error("Error signing in with Google: ", error.message);
     }
   }
 
@@ -154,6 +170,7 @@ const SignUpSignInComponent = () => {
               or
             </p>
             <Button
+              onClick={googleAuth}
               text={loading ? "Loading..." : "Login Using Google"}
               blue={true}
             />
@@ -213,6 +230,7 @@ const SignUpSignInComponent = () => {
               or
             </p>
             <Button
+              onClick={googleAuth}
               text={loading ? "Loading..." : "Sign Up Using Google"}
               blue={true}
             />
