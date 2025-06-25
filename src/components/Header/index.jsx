@@ -21,7 +21,7 @@ function Header() {
   }
 
   const photourl = user?.photoURL;
-
+  
   useEffect(() => {
     if (!loading) {
       if (!user) {
