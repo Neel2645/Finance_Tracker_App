@@ -3,12 +3,12 @@ import Cards from "../components/Cards";
 import Header from "../components/Header";
 import AddIncomeModal from "../components/Modals/AddIncome";
 import AddExpenseModal from "../components/Modals/AddExpense";
-import moment from "moment";
 import { addDoc, collection, getDocs, query } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import TransactionsTable from "../components/TransactionsTable";
+import { unparse } from "papaparse";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -62,12 +62,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchTransactions();
-  }, []);
+  }, [user]);
 
   const onFinish = (values, type) => {
     const newTransaction = {
       type: type,
-      date: moment(values.date).format("YYYY-MM-DD"),
+      date: values.date.format("YYYY-MM-DD"),
       amount: parseFloat(values.amount),
       tag: values.tag,
       name: values.name,
@@ -134,6 +134,20 @@ const Dashboard = () => {
     setLoading(false);
   }
 
+  function exportToCsv() {
+    const csv = unparse(transactions, {
+      fields: ["name", "type", "date", "amount", "tag"],
+    });
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "transactions.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   return (
     <div>
       <Header />
@@ -158,7 +172,12 @@ const Dashboard = () => {
             handleIncomeCancel={handleIncomeCancel}
             onFinish={onFinish}
           />
-          <TransactionsTable transactions={transactions} />
+          <TransactionsTable
+            transactions={transactions}
+            exportToCsv={exportToCsv}
+            fetchTransactions={fetchTransactions}
+            addTransaction={addTransaction}
+          />
         </>
       )}
     </div>
