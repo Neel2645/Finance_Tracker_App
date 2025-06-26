@@ -1,6 +1,6 @@
 import "./styles.css";
 
-function Button({ text, onClick, blue , disabled }) {
+const Button = ({ text, onClick, blue , disabled }) => {
   return (
     <div className={blue ? "btn btn-blue" : "btn"} onClick={onClick} disabled={disabled}>
       {text}

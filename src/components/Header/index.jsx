@@ -6,7 +6,7 @@ import { auth } from "../../firebase";
 import userSvg from "../../assets/user.svg";
 import { toast } from "react-toastify";
 
-function Header() {
+const Header = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ function Header() {
         navigate("/dashboard");
       }
     }
-  }, [user, loading, photourl]);
+  }, [user, loading]);
 
   console.log(user);
 
