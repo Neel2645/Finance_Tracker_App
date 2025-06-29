@@ -7,15 +7,20 @@ const Cards = ({
   showIncomeModal,
   income,
   totalBalance,
-  expense,
+  expense
 }) => {
+
+  const resetBalance = () => {
+      console.log("Reset Balance...!");
+  }
+
   return (
     <div>
       <Row className="my-row">
         <Card variant={true} className="my-card">
           <h2>Current Balance</h2>
           <p>₹{totalBalance}</p>
-          <Button text="Reset Balance" blue={true} />
+          <Button text="Reset Balance" blue={true} onClick={resetBalance} />
         </Card>
 
         <Card variant={true} className="my-card">

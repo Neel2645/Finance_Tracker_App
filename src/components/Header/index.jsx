@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import "./styles.css";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
-import userSvg from "../../assets/user.svg";
+// import userSvg from "../../assets/user.svg";
 import { toast } from "react-toastify";
 
 const Header = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
-
+  
   function logout() {
     try {
       auth.signOut();
@@ -19,8 +19,8 @@ const Header = () => {
       toast.error("Error For Logout...!",error.message);
     }
   }
-
-  const photourl = user?.photoURL;
+  
+  // const photourl = user?.photoURL;
   
   useEffect(() => {
     if (!loading) {
@@ -30,8 +30,8 @@ const Header = () => {
         navigate("/dashboard");
       }
     }
-  }, [user, loading]);
-
+  }, [user,loading]);
+  
   console.log(user);
 
   return (
@@ -41,12 +41,13 @@ const Header = () => {
         <>
           <p className="link" onClick={logout}>
             <span style={{ marginRight: "1rem" }}>
-              <img
+              {/* <img
                 src={photourl || userSvg}
                 width="30"
                 alt="User"
                 style={{ borderRadius: "50%" }}
-              />
+              /> */}
+              Logout
             </span>
           </p>
         </>
